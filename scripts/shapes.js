@@ -4,19 +4,35 @@ var svg = d3.select('body').append('svg').attr('height','100%').attr('width','10
 
 var newX = 300;
 
-svg.selectAll('rect')
+svg.selectAll('circle.first')
     .data(dataArray)
-    .enter()
-    .append('circle')
-        .attr('cx',function (d, i) {
-            newX+= (d*6) + (i*20);
-            return newX;
-        })
-        .attr('cy',function (d, i) {
-            return 100;
-        })
-        .attr('r',function (d) {
-            return d*3;
-        })
+    .enter().append('circle')
+            .attr('class','first')
+            .attr('cx',function (d, i) {
+                newX+= (d*6) + (i*20);
+                return newX;
+            })
+            .attr('cy',function (d, i) {
+                return 100;
+            })
+            .attr('r',function (d) {
+                return d*3;
+            })
+;
+ newX = 600;
 
+svg.selectAll('circle.second')
+    .data(dataArray)
+    .enter().append('circle')
+            .attr('class','second')
+            .attr('cx',function (d, i) {
+                newX+= (d*6) + (i*20);
+                return newX;
+            })
+            .attr('cy',function (d, i) {
+                return 100;
+            })
+            .attr('r',function (d) {
+                return d*3;
+            })
 ;
