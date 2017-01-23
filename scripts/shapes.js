@@ -1,28 +1,20 @@
-var dataArray = [5,11,18];
+var dataArray = [{x:5,y:5},{x:10,y:15},{x:20,y:7},{x:30,y:18},{x:40,y:10}];
 
-var svg = d3.select('body').append('svg').attr('height','100%').attr('width','100%');
+var svg = d3.select('body').append('svg').attr('height', '100%').attr('width','100%');
 
-var newX = 300;
-
-
-svg.selectAll('line')
-    .data(dataArray)
-    .enter().append('line')
-            .attr('x1',function (d, i) {
-                return newX;
-            })
-            .attr('y1',function (d, i) {
-                return 80+(i*20);
-            })
-            .attr('x2',function (d) {
-                return newX + d*15;
-            })
-            .attr('y2',function (d,i) {
-                return 80+(i*20);
-            })
-            .style('stroke', 'green')
-            // .attr('stroke', 'blue')
-            .attr('stroke-width', 2)
+var line = d3.line()
+             .x(function (d, i) {
+                 return d.x * 6;
+             })
+             .y(function (d, i) {
+                 return d.y * 6;
+             })
+    // .curve(d3.curveStep)
+    .curve(d3.curveCardinal)
 ;
 
-
+svg.append('path')
+    .attr('fill','none')
+    .attr('stroke', "blue")
+    .attr('d', line(dataArray))
+;
